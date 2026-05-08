@@ -1,0 +1,170 @@
+[
+  {
+    "transactionId": "T1001",
+    "customerId": "C101",
+    "customerName": "Rahul Sharma",
+    "amount": 120,
+    "date": "2025-03-15"
+  },
+  {
+    "transactionId": "T1002",
+    "customerId": "C101",
+    "customerName": "Rahul Sharma",
+    "amount": 85,
+    "date": "2025-03-18"
+  },
+  {
+    "transactionId": "T1003",
+    "customerId": "C101",
+    "customerName": "Rahul Sharma",
+    "amount": 200,
+    "date": "2025-02-10"
+  },
+  {
+    "transactionId": "T1004",
+    "customerId": "C102",
+    "customerName": "Priya Verma",
+    "amount": 75,
+    "date": "2025-03-20"
+  },
+  {
+    "transactionId": "T1005",
+    "customerId": "C102",
+    "customerName": "Priya Verma",
+    "amount": 150,
+    "date": "2025-03-22"
+  },
+  {
+    "transactionId": "T1006",
+    "customerId": "C102",
+    "customerName": "Priya Verma",
+    "amount": 90,
+    "date": "2025-02-14"
+  },
+  {
+    "transactionId": "T1007",
+    "customerId": "C103",
+    "customerName": "Amit Patel",
+    "amount": 250,
+    "date": "2025-03-25"
+  },
+  {
+    "transactionId": "T1008",
+    "customerId": "C103",
+    "customerName": "Amit Patel",
+    "amount": 45,
+    "date": "2025-03-26"
+  },
+  {
+    "transactionId": "T1009",
+    "customerId": "C103",
+    "customerName": "Amit Patel",
+    "amount": 180,
+    "date": "2025-02-05"
+  },
+  {
+    "transactionId": "T1010",
+    "customerId": "C104",
+    "customerName": "Neha Iyer",
+    "amount": 110,
+    "date": "2025-03-10"
+  },
+  {
+    "transactionId": "T1011",
+    "customerId": "C104",
+    "customerName": "Neha Iyer",
+    "amount": 95,
+    "date": "2025-03-12"
+  },
+  {
+    "transactionId": "T1012",
+    "customerId": "C104",
+    "customerName": "Neha Iyer",
+    "amount": 175,
+    "date": "2025-01-20"
+  },
+  {
+    "transactionId": "T1013",
+    "customerId": "C105",
+    "customerName": "Vikram Singh",
+    "amount": 220,
+    "date": "2025-03-08"
+  },
+  {
+    "transactionId": "T1014",
+    "customerId": "C105",
+    "customerName": "Vikram Singh",
+    "amount": 65,
+    "date": "2025-02-28"
+  },
+  {
+    "transactionId": "T1015",
+    "customerId": "C105",
+    "customerName": "Vikram Singh",
+    "amount": 105,
+    "date": "2025-01-15"
+  },
+  {
+    "transactionId": "T1016",
+    "customerId": "C106",
+    "customerName": "Ananya Rao",
+    "amount": 140,
+    "date": "2025-03-30"
+  },
+  {
+    "transactionId": "T1017",
+    "customerId": "C106",
+    "customerName": "Ananya Rao",
+    "amount": 80,
+    "date": "2025-02-22"
+  },
+  {
+    "transactionId": "T1018",
+    "customerId": "C106",
+    "customerName": "Ananya Rao",
+    "amount": 210,
+    "date": "2025-01-10"
+  },
+  {
+    "transactionId": "T1019",
+    "customerId": "C107",
+    "customerName": "Suresh Kumar",
+    "amount": 165,
+    "date": "2025-03-05"
+  },
+  {
+    "transactionId": "T1020",
+    "customerId": "C107",
+    "customerName": "Suresh Kumar",
+    "amount": 55,
+    "date": "2025-02-18"
+  },
+  {
+    "transactionId": "T1021",
+    "customerId": "C107",
+    "customerName": "Suresh Kumar",
+    "amount": 125,
+    "date": "2025-01-25"
+  },
+  {
+    "transactionId": "T1022",
+    "customerId": "C108",
+    "customerName": "Pooja Mehta",
+    "amount": 190,
+    "date": "2025-03-02"
+  },
+  {
+    "transactionId": "T1023",
+    "customerId": "C108",
+    "customerName": "Pooja Mehta",
+    "amount": 70,
+    "date": "2025-02-20"
+  },
+  {
+    "transactionId": "T1024",
+    "customerId": "C108",
+    "customerName": "Pooja Mehta",
+    "amount": 135,
+    "date": "2025-01-12"
+  }
+]

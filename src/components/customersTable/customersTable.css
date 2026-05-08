@@ -1,0 +1,98 @@
+.customers-table-wrapper {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.customers-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customers-table thead {
+  background-color: #f3f4f6;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.customers-table th {
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.customers-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.customers-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.customer-row.selected {
+  background-color: #eff6ff;
+}
+
+.customers-table td {
+  padding: 14px 12px;
+  color: #111827;
+  font-size: 14px;
+}
+
+.customer-id {
+  font-weight: 600;
+  color: #3b82f6;
+  font-family: 'Courier New', monospace;
+}
+
+.customer-name {
+  color: #374151;
+}
+
+.customer-action {
+  text-align: center;
+}
+
+.select-button {
+  padding: 8px 16px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.select-button:hover:not(.active) {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.select-button.active {
+  background-color: #10b981;
+}
+
+.select-button.active:hover {
+  background-color: #059669;
+}
+
+@media (max-width: 768px) {
+  .customers-table th,
+  .customers-table td {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+  .select-button {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+}
