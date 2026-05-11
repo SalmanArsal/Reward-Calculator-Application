@@ -1,4 +1,5 @@
 import logger from './logger';
+import { FILTER_MONTH_OPTIONS } from '../constants';
 
 /**
  * Calculate reward points based on transaction amount
@@ -56,8 +57,9 @@ export const calculateRewardPoints = (amount) => {
 
 /**
  * Calculate monthly reward points for a customer
+ * Handles special month values: 0 (recent 3 months), -1 (all transactions)
  * @param {Array} transactions - Array of transaction objects
- * @param {number} month - Month number (1-12)
+ * @param {number} month - Month number (1-12, 0=recent 3 months, -1=all)
  * @param {number} year - Year
  * @returns {number} Total monthly reward points
  */
@@ -68,6 +70,29 @@ export const calculateMonthlyRewards = (transactions, month, year) => {
       return 0;
     }
 
+    // Handle special month values
+    if (month === FILTER_MONTH_OPTIONS.ALL_TRANSACTIONS) {
+      // Sum rewards for all transactions
+      return transactions.reduce((total, transaction) => {
+        return total + calculateRewardPoints(transaction.amount);
+      }, 0);
+    }
+
+    if (month === FILTER_MONTH_OPTIONS.RECENT_3_MONTHS) {
+      // Sum rewards for last 3 months
+      const today = new Date();
+      const threeMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 2, 1);
+
+      return transactions.reduce((total, transaction) => {
+        const transactionDate = new Date(transaction.date);
+        if (transactionDate >= threeMonthsAgo) {
+          return total + calculateRewardPoints(transaction.amount);
+        }
+        return total;
+      }, 0);
+    }
+
+    // Handle regular month filtering
     return transactions.reduce((total, transaction) => {
       const transactionDate = new Date(transaction.date);
       const transactionMonth = transactionDate.getMonth() + 1;
@@ -108,8 +133,9 @@ export const calculateTotalRewards = (transactions) => {
 
 /**
  * Calculate total amount spent in a specific month
+ * Handles special month values: 0 (recent 3 months), -1 (all transactions)
  * @param {Array} transactions - Array of transaction objects
- * @param {number} month - Month number (1-12)
+ * @param {number} month - Month number (1-12, 0=recent 3 months, -1=all)
  * @param {number} year - Year
  * @returns {number} Total amount spent in the month
  */
@@ -120,6 +146,29 @@ export const calculateMonthlyAmountSpent = (transactions, month, year) => {
       return 0;
     }
 
+    // Handle special month values
+    if (month === FILTER_MONTH_OPTIONS.ALL_TRANSACTIONS) {
+      // Sum amounts for all transactions
+      return transactions.reduce((total, transaction) => {
+        return total + (transaction.amount || 0);
+      }, 0);
+    }
+
+    if (month === FILTER_MONTH_OPTIONS.RECENT_3_MONTHS) {
+      // Sum amounts for last 3 months
+      const today = new Date();
+      const threeMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 2, 1);
+
+      return transactions.reduce((total, transaction) => {
+        const transactionDate = new Date(transaction.date);
+        if (transactionDate >= threeMonthsAgo) {
+          return total + (transaction.amount || 0);
+        }
+        return total;
+      }, 0);
+    }
+
+    // Handle regular month filtering
     return transactions.reduce((total, transaction) => {
       const transactionDate = new Date(transaction.date);
       const transactionMonth = transactionDate.getMonth() + 1;

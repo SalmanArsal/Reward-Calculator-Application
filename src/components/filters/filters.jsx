@@ -1,9 +1,19 @@
 import PropTypes from 'prop-types';
 import { MONTHS } from '../../utils/dateFormatter';
-import { AVAILABLE_YEARS } from '../../constants';
+import { AVAILABLE_YEARS, FILTER_MONTH_OPTIONS } from '../../constants';
 import './filters.css';
 
 function Filters({ selectedMonth, selectedYear, onMonthChange, onYearChange }) {
+  const getMonthDisplay = () => {
+    if (selectedMonth === FILTER_MONTH_OPTIONS.RECENT_3_MONTHS) {
+      return 'Recent 3 Months';
+    }
+    if (selectedMonth === FILTER_MONTH_OPTIONS.ALL_TRANSACTIONS) {
+      return 'All Transactions';
+    }
+    return `${MONTHS[selectedMonth - 1]} ${selectedYear}`;
+  };
+
   return (
     <div className="filters-container">
       <div className="filter-group">
@@ -16,11 +26,15 @@ function Filters({ selectedMonth, selectedYear, onMonthChange, onYearChange }) {
           value={selectedMonth}
           onChange={(e) => onMonthChange(parseInt(e.target.value, 10))}
         >
-          {MONTHS.map((month, index) => (
-            <option key={index} value={index + 1}>
-              {month}
-            </option>
-          ))}
+          <option value={FILTER_MONTH_OPTIONS.RECENT_3_MONTHS}>Recent 3 Months</option>
+          <option value={FILTER_MONTH_OPTIONS.ALL_TRANSACTIONS}>All</option>
+          <optgroup label="Specific Months">
+            {MONTHS.map((month, index) => (
+              <option key={index} value={index + 1}>
+                {month}
+              </option>
+            ))}
+          </optgroup>
         </select>
       </div>
 
@@ -44,7 +58,7 @@ function Filters({ selectedMonth, selectedYear, onMonthChange, onYearChange }) {
 
       <div className="filter-info">
         <span className="filter-status">
-          Showing: {MONTHS[selectedMonth - 1]} {selectedYear}
+          Showing: {getMonthDisplay()}
         </span>
       </div>
     </div>

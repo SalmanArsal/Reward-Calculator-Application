@@ -3,26 +3,16 @@ import Layout from './components/layout/layout';
 import Loading from './components/loading/loading';
 import ErrorPage from './components/errorPage/errorPage';
 import CustomersTable from './components/customersTable/customersTable';
-import TransactionTable from './components/customersTable/transactionTable';
-import Filters from './components/filters/filters';
-import RewardPointsCard from './components/rewardPointsCard/rewardPointsCard';
 import useTransactions from './hooks/useTransactions';
 import {
-  calculateMonthlyRewards,
   calculateTotalRewards,
-  calculateMonthlyAmountSpent,
   calculateTotalAmountSpent,
 } from './utils/calculateRewardPoints';
 import { filterByMonthYear } from './services/transactionService';
 import logger from './utils/logger';
-import { getLastNMonths } from './utils/dateFormatter';
 import { DEFAULT_FILTER } from './constants';
 import './App.css';
 
-/**
- * Main App Component
- * Root component that orchestrates the customer rewards calculator
- */
 function App() {
   const { transactions, customers, status, error, retryLoadTransactions } =
     useTransactions();
@@ -50,7 +40,7 @@ function App() {
     logger.info('Year filter changed', { year: newYear });
   }, []);
 
-  // Get customer transactions
+  // customer transactions
   const customerTransactions = useMemo(() => {
     if (!selectedCustomerId) return [];
     return transactions.filter((t) => t.customerId === selectedCustomerId);
@@ -61,19 +51,10 @@ function App() {
     return filterByMonthYear(customerTransactions, selectedMonth, selectedYear);
   }, [customerTransactions, selectedMonth, selectedYear]);
 
-  // Calculate reward points
-  const monthlyRewards = useMemo(() => {
-    return calculateMonthlyRewards(customerTransactions, selectedMonth, selectedYear);
-  }, [customerTransactions, selectedMonth, selectedYear]);
-
+  // reward points
   const totalRewards = useMemo(() => {
     return calculateTotalRewards(customerTransactions);
   }, [customerTransactions]);
-
-  // Calculate amount spent
-  const monthlyAmountSpent = useMemo(() => {
-    return calculateMonthlyAmountSpent(customerTransactions, selectedMonth, selectedYear);
-  }, [customerTransactions, selectedMonth, selectedYear]);
 
   const totalAmountSpent = useMemo(() => {
     return calculateTotalAmountSpent(customerTransactions);
@@ -106,82 +87,25 @@ function App() {
   return (
     <Layout>
       <div className="app-content">
-        {/* Customers Section */}
+        {/* Customers Section with Accordion */}
         <section className="customers-section">
-          <h2 className="section-title">🧑‍💼 Select a Customer</h2>
+          <div className="section-header">
+            <h2 className="section-title">Customer Rewards Dashboard</h2>
+          </div>
           <CustomersTable
             customers={customers}
             selectedCustomerId={selectedCustomerId}
+            totalSpent={totalAmountSpent}
+            totalRewards={totalRewards}
+            allTransactions={customerTransactions}
+            filteredTransactions={filteredTransactions}
+            selectedMonth={selectedMonth}
+            selectedYear={selectedYear}
             onSelectCustomer={handleSelectCustomer}
+            onMonthChange={handleMonthChange}
+            onYearChange={handleYearChange}
           />
         </section>
-
-        {/* Customer Details Section */}
-        {selectedCustomerId && (
-          <>
-            {/* Filters Section */}
-            <section className="filters-section">
-              <h2 className="section-title">📅 Filter Transactions</h2>
-              <Filters
-                selectedMonth={selectedMonth}
-                selectedYear={selectedYear}
-                onMonthChange={handleMonthChange}
-                onYearChange={handleYearChange}
-              />
-            </section>
-
-            {/* Reward Summary Cards */}
-            <section className="rewards-summary">
-              <div className="cards-grid">
-                <RewardPointsCard
-                  title="Monthly Spent"
-                  points={monthlyAmountSpent}
-                  subtitle={`${selectedMonth}/${selectedYear}`}
-                  variant="info"
-                  icon="💰"
-                  showAsCurrency
-                />
-                <RewardPointsCard
-                  title="Total Spent"
-                  points={totalAmountSpent}
-                  subtitle="All time"
-                  variant="primary"
-                  icon="💵"
-                  showAsCurrency
-                />
-                <RewardPointsCard
-                  title="Monthly Rewards"
-                  points={monthlyRewards}
-                  subtitle={`${selectedMonth}/${selectedYear}`}
-                  variant="success"
-                  icon="📊"
-                />
-                <RewardPointsCard
-                  title="Total Rewards"
-                  points={totalRewards}
-                  subtitle="All time"
-                  variant="warning"
-                  icon="🏆"
-                />
-              </div>
-            </section>
-
-            {/* Transactions Section */}
-            <section className="transactions-section">
-              <h2 className="section-title">📋 Transaction History</h2>
-              <TransactionTable transactions={filteredTransactions} />
-            </section>
-          </>
-        )}
-
-        {/* Empty State when no customer is selected */}
-        {!selectedCustomerId && (
-          <div className="empty-state-container">
-            <div className="empty-state-message">
-              <p>👈 Select a customer to view their transaction history and rewards</p>
-            </div>
-          </div>
-        )}
       </div>
     </Layout>
   );

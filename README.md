@@ -43,18 +43,15 @@ A production-ready React application for calculating and managing customer rewar
 ## User Interface
 
 ### Customer Selection
-Browse and select from a list of customers. The selected customer is highlighted in green.
+Click on the Exapand button of each row to expand the transaction detaiils
 ![customer selection table](screenshots/Image1.png)
+![Transaction Filters](screenshots/Image2.png)
 
 
 ### Reward Summary Cards
 Four beautifully styled cards display comprehensive statistics:
-- **Monthly Spent** (Purple): Total amount spent in the selected month
 - **Total Spent** (Blue): Total amount spent across all transactions
-- **Monthly Rewards** (Green): Reward points earned in the selected month
 - **Total Rewards** (Orange): Total reward points earned
-
-![Reward Summary Cards](screenshots/Image3.png)
 
 ### Transaction History
 View all transactions with pagination. Each transaction shows:
@@ -63,7 +60,8 @@ View all transactions with pagination. Each transaction shows:
 - Amount (formatted as currency)
 - Automatically calculated Reward Points
 
-![Transaction History Table](screenshots/Image4.png)
+![Reward Summary Cards](screenshots/Image3.png)
+
 
 ## 🛠 Technical Stack
 
